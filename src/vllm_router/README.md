@@ -118,6 +118,7 @@ Currently, the dynamic config supports the following fields:
 
 **Optional fields:**
 
+- `callbacks`: The path to the callback instance extending CustomCallbackHandler.
 - (When using `static` service discovery) `static_backends`: The URLs of static serving engines, separated by commas (e.g., `http://localhost:9001,http://localhost:9002,http://localhost:9003`).
 - (When using `static` service discovery) `static_models`: The models running in the static serving engines, separated by commas (e.g., `model1,model2`).
 - (When using `static` service discovery and if you enable the `--static-backend-health-checks` flag) `static_model_types`: The model types running in the static serving engines, separated by commas (e.g., `chat,chat`).
@@ -131,6 +132,7 @@ Here is an example of a dynamic YAML config file:
 ```yaml
 service_discovery: static
 routing_logic: roundrobin
+callbacks: module.custom.callback_handler
 static_models:
     facebook/opt-125m:
         static_backends:
@@ -152,6 +154,7 @@ Here is an example of a dynamic JSON config file:
 {
     "service_discovery": "static",
     "routing_logic": "roundrobin",
+    "callbacks": "module.custom.callback_handler",
     "static_backends": "http://localhost:9001,http://localhost:9002,http://localhost:9003",
     "static_models": "facebook/opt-125m,meta-llama/Llama-3.1-8B-Instruct,facebook/opt-125m",
     "static_model_types": "completion,chat,completion"

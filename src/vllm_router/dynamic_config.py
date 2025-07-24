@@ -62,6 +62,9 @@ class DynamicRouterConfig:
     # Routing logic configurations
     session_key: Optional[str] = None
 
+    # Logging Options
+    callbacks: Optional[str] = None
+
     # Batch API configurations
     # TODO (ApostaC): Support dynamic reconfiguration of batch API
     # enable_batch_api: bool
@@ -82,6 +85,7 @@ class DynamicRouterConfig:
             service_discovery=args.service_discovery,
             static_backends=args.static_backends,
             static_models=args.static_models,
+            static_model_types=args.static_model_types,
             static_aliases=args.static_aliases,
             k8s_port=args.k8s_port,
             k8s_namespace=args.k8s_namespace,
@@ -89,6 +93,8 @@ class DynamicRouterConfig:
             # Routing logic configurations
             routing_logic=args.routing_logic,
             session_key=args.session_key,
+            # Logging Options
+            callbacks=args.callbacks,
         )
 
     @staticmethod
