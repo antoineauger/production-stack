@@ -171,10 +171,15 @@ def initialize_all(app: FastAPI, args):
         )
 
     # Initialize dynamic config watcher
+    if args.dynamic_config_yaml:
+        init_config = DynamicRouterConfig.from_args(args)
+        initialize_dynamic_config_watcher(
+            args.dynamic_config_yaml, "YAML", 10, init_config, app
+        )
     if args.dynamic_config_json:
         init_config = DynamicRouterConfig.from_args(args)
         initialize_dynamic_config_watcher(
-            args.dynamic_config_json, 10, init_config, app
+            args.dynamic_config_json, "JSON", 10, init_config, app
         )
 
     if args.callbacks:
